@@ -1,0 +1,28 @@
+{%extends "layout.html" %}
+
+{%block baslik %}
+<title>Kayıt Panel</title>
+{%endblock baslik %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+<div class="col-md-6 offset-md-3">
+
+   <h3> Kayıt ol</h3>
+<hr>
+
+<form method = "post">
+    {% csrf_token %}
+
+    {{form | crispy}}
+
+    <button type="submit" class="btn btn-danger"style="margin-top:80px">Kayıt Ol</button>
+    <hr>
+      <a type="submit" class="btn btn-danger" style="margin-top:80px,margin-left:20 px" href="/login/">Giriş Yapmak</a>
+</form>
+
+
+    </div>
+    </div>
+
+{% endblock body %}

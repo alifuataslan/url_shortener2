@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block baslik %}
+<title>Yours Notes</title>
+{% endblock baslik %}
+{% block body %}
+<h3>Senin Notların </h3>
+<hr>
+<p>Hoşgeldiniz  , {{request.user.username}}</p>
+<hr>
+<a class="btn btn-danger" href ="{% url 'index'  %}">Yeni Url Oluştur</a>
+
+<hr>
+
+{% if urls %}
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Short Url</th>
+      <th scope="col">Orjinal Url</th>
+      <th scope="col">Tarih</th>
+      <th scope="col">Sil</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--  <tr>
+    <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> -->
+    {% for url in urls %}
+      
+        <tr>
+            <th scope="row">{{url.id}}</th>
+            <td><a href="/{{url.short_url}}">{{url.short_url}}</a></td>
+            <td>{{url.full_url}}</td>  
+            <td>{{url.created_date}}</td>
+            {% if url.author_id != request.user.id %}
+            <td>Pasifize Edilemez.</td>
+            {% else %}
+              {% if url.url_show %}
+                <td><a href="/deleteurl/{{url.id}}" class="btn btn-danger">{% translate 'pasifize et'  %}</a></td>
+              {% else %}
+                <td><a href="/activateurl/{{url.id}}" class="btn btn-danger">Aktif Et</a></td>
+              {% endif %}
+            
+              
+            {% endif %}
+          
+            
+        
+        
+        </tr>
+    
+    {% endfor %}
+    
+    
+  </tbody>
+</table>
+{% else %}
+
+    <div class="alert alert-danger">
+        Url Bulunamadı...
+    </div>
+{% endif %}
+
+
+{% endblock body %}

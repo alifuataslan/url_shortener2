@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="/">UrlShortener</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/allurls">All Urls</a>
+        </li>
+       
+      </ul>
+      <form class="navbar-nav ml-auto">
+       {% if request.user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/activate/subs">AboneOl<span class="sr-only">(current)</span></a>
+        </li>
+        
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard/">Yours Urls<span class="sr-only">(current)</span></a>
+        </li>
+           <li class="nav-item active">
+          <a class="nav-link" href="/logout/"> Çıkış Yap<span class="sr-only">(current)</span></a>
+        </li>
+
+
+        <p style="color:white;margin:8px">Hosgeldin   {{request.user.username}}</p>
+        
+        {% else %}
+
+        <li class="nav-item active">
+          <a class="nav-link" href="/login/"> Giris Yap<span class="sr-only">(current)</span></a>
+        </li>
+
+         <li class="nav-item active">
+          <a class="nav-link" href="/register/">Kayıt ol <span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
+   
+    
+
+
+        
+
+        
+
+         
+       
+      </form>
+    </div>
+  </nav>

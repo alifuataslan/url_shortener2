@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{%block baslik %}
+<title>UrlBase</title>
+{%endblock baslik %}
+
+
+
+
+{% block body%}
+   <div class="jumbotron text-center">
+        <h3>URL SHORTENER</h3>
+       <form action="" method= "POST" > 
+      {% csrf_token %}
+      <div style="margin:auto">
+      {% if request.user.is_authenticated %}
+          <input type="text" name="full_url" class="input-sm" size="60"/>
+          <button  type="submit" class="btn btn-danger" >Dönüştür</button>
+          <p>
+         {{full_url}}
+         </p>
+         <p>
+         {{short_url}}
+         </p>
+
+      {% else %}
+      <hr>
+      <h5>LÜTFEN ÖNCE KAYIT OLUNUZ...</h5>
+      <hr>
+      <h5>ÜYE İSENİZ GİRİŞ YAPINIZ</H5>
+      {% endif %}
+      
+     
+   </div>
+  
+      </div>
+      </form>
+
+{%endblock body%}
